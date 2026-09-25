@@ -39,6 +39,14 @@ def query_status(location, application_num, passport_number, surname, captchaHan
 
         # Find captcha image
         captcha = soup.find(name="img", id="c_status_ctl00_contentplaceholder1_defaultcaptcha_CaptchaImage")
+        if captcha is None:
+    print("=== CAPTCHA NOT FOUND ===")
+    print("Final URL:", res.url)
+    print("HTTP status:", res.status_code)
+    print("Page title:", soup.title.string if soup.title else "NO TITLE")
+    print("HTML preview:")
+    print(res.text[:3000])
+    return {"success": False}
         image_url = ROOT + captcha["src"]
         img_resp = session.get(image_url)
 
