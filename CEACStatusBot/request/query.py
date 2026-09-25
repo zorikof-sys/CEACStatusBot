@@ -42,11 +42,11 @@ def query_status(location, application_num, passport_number, surname, captchaHan
 
         if captcha is None:
             print("=== CAPTCHA NOT FOUND ===")
-            print("Final URL:", res.url)
-            print("HTTP status:", res.status_code)
+            print("Final URL:", r.url)
+            print("HTTP status:", r.status_code)
             print("Page title:", soup.title.string if soup.title else "NO TITLE")
             print("HTML preview:")
-            print(res.text[:3000])
+            print(r.text[:3000])
             return {"success": False}
 
         image_url = ROOT + captcha["src"]
